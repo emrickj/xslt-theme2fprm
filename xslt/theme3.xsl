@@ -8,10 +8,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:template match="/">
 <html>
 <head>
-  <meta charset="utf-8"></meta>
-  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<title><xsl:value-of select="website/title"/></title>
   <style>
   body {
@@ -43,11 +43,13 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
 		<xsl:for-each select="website/page">
-         <li>
-		   <a href="#p{position()}">
-		   <xsl:value-of select="name" disable-output-escaping="yes" />
-		   </a>
-		 </li>
+		 <xsl:if test="string-length(name) &gt; 2">
+			 <li>
+			   <a href="#p{position()}">
+			   <xsl:value-of select="name" disable-output-escaping="yes" />
+			   </a>
+			 </li>
+		 </xsl:if>
 		</xsl:for-each>
         </ul>
       </div>
@@ -56,8 +58,9 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 </nav>
 
 <xsl:for-each select="website/page">
+  <xsl:if test="string-length(name) &gt; 2">
 	<div id="p{position()}" class='container-fluid' lang="{@language}">
-		<img class='img-responsive' style='display: block;margin: auto;' src='{image}'></img>
+		<img class='img-responsive' style='display: block;margin: auto;' src='{image}' />
 		<xsl:value-of select="contents" disable-output-escaping="yes" />
 		<xsl:if test="@type='comments'">
 			 <div id='HCB_comment_box' style='color: inherit; background-color: inherit;'>   <a href="https://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
@@ -74,19 +77,19 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				<div class="form-group">
 				   <label class="control-label col-sm-3" for="name">Name:</label>
 				   <div class="col-sm-6">
-					  <input type="text" class="form-control" name="name"></input>
+					  <input type="text" class="form-control" name="name" />
 				   </div>
 				</div>
 				<div class="form-group">
 				   <label class="control-label col-sm-3" for="phone">Contact Phone #:</label>
 				   <div class="col-sm-6">
-					  <input type="text" class="form-control" name="phone"></input>
+					  <input type="text" class="form-control" name="phone" />
 				   </div>
 				</div>
 				<div class="form-group">
 				   <label class="control-label col-sm-3" for="email">Email Address:</label>
 				   <div class="col-sm-6">
-					  <input type="email" class="form-control" name="email"></input>
+					  <input type="email" class="form-control" name="email" />
 				   </div>
 				</div>
 				<div class="form-group">
@@ -94,12 +97,13 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 				   <div class="col-sm-6">
 					  <textarea class="form-control" rows="5" name="message"></textarea>
 					  <br />
-					  <input type="submit" class="btn btn-default" value="Submit"></input>
+					  <input type="submit" class="btn btn-default" value="Submit" />
 				   </div>
 				</div>
 			</form>
 		</xsl:if>
 	</div>
+  </xsl:if>
 </xsl:for-each>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
