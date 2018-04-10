@@ -1,6 +1,8 @@
 <?php
-   ini_set('display_errors', 'On');
-   error_reporting(E_ALL);
+// Bootstrap Scrollspy XSLT theme.
+
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 
 // Load XML file
 $xml = new DOMDocument;
