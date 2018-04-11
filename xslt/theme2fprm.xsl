@@ -69,7 +69,15 @@
 			<xsl:if test="position() = $page">
 			   <xsl:attribute name="class">nav-link active</xsl:attribute>
 			</xsl:if>
-			<xsl:value-of select="name" disable-output-escaping="yes" />
+			<xsl:choose>
+				<xsl:when test="substring(name,2,1)=' '">
+				   <i class="fa"><xsl:value-of select="substring(name,1,1)" /></i>
+				   <xsl:value-of select="substring(name,2)" />
+				</xsl:when>
+				<xsl:otherwise>
+				   <xsl:value-of select="name" disable-output-escaping="yes" />
+				</xsl:otherwise>
+			</xsl:choose>
 		  </a>
 		</li>
 	</xsl:if>
