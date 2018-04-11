@@ -5,31 +5,30 @@
 
 <xsl:output method="html" doctype-system="about:legacy-compat" encoding="utf-8" indent="yes" />
 
-<xsl:template match="/">
-<html lang="{website/page[position()=$page]/@language}">
+<xsl:template match="website">
+<html lang="{page[position()=$page]/@language}">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-	<title><xsl:value-of select="website/title"/></title>
+	<title><xsl:value-of select="title"/></title>
 <style>
 @media (min-width: 576px) {
 	form label {text-align: right;}
 }
-
-
-   </style>
+<xsl:value-of select="style" disable-output-escaping="yes" />
+</style>
 </head>
 <body class='page{$page}' id='demo'>
 <nav class="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
-  <a class="navbar-brand" href="#"><xsl:value-of select="website/title"/></a>
+  <a class="navbar-brand" href="#"><xsl:value-of select="title"/></a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
 	<span class="navbar-toggler-icon"></span>
   </button>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="navbar-nav">
-	  <xsl:apply-templates select="website/page" />
+	  <xsl:apply-templates select="page" />
       </ul>
     </div>
 </nav>
@@ -38,7 +37,7 @@
          <div class="col-md-2">
          </div>
          <div class="col-md-8">
-            <img class='img-fluid' src='{website/page[position()=$page]/image}' />
+            <img class='img-fluid' src='{page[position()=$page]/image}' />
             <br />
          </div>
          <div class="col-md-2">
@@ -48,7 +47,7 @@
          <div class="col-md-2">
          </div>
          <div class="col-md-8">
-		     <xsl:apply-templates select="website/page[position()=$page]/contents" />
+		     <xsl:apply-templates select="page[position()=$page]/contents" />
          </div>
          <div class="col-md-2">
          </div>
